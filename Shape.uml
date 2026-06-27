@@ -1,0 +1,69 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Shape {
+    # pointList : List<Point>
+    + points : List<Point> {readOnly}
+    {abstract} + area : Double
+    + move(point : Point) : Unit
+    {abstract} + clone() : Shape
+}
+
+class Point {
+    + x : Double
+    + y : Double
+    + clone() : Point
+    + moveX(deltaX : Double) : Unit
+    + moveY(deltaY : Double) : Unit
+    + move(deltaX : Double, deltaY : Double) : Unit
+    + move(delta : Point) : Unit
+}
+
+class Line {
+    + length : Double {readOnly}
+    + slope : Double {readOnly}
+    + area : Double
+    + clone() : Line
+}
+
+class Rectangle {
+    + width : Double {readOnly}
+    + height : Double {readOnly}
+    + area : Double
+    + clone() : Rectangle
+}
+
+class Square {
+    + point : Point
+}
+
+class Ellipse {
+    + center : Point
+    + radius1 : Double
+    + radius2 : Double
+    + area : Double
+    + clone() : Ellipse
+}
+
+class Circle {
+    + radius : Double
+}
+
+class Triangle {
+    + area : Double
+    + clone() : Triangle
+}
+
+Shape <|-- Line
+Shape <|-- Rectangle
+Shape <|-- Ellipse
+Shape <|-- Triangle
+
+Rectangle <|-- Square
+Ellipse <|-- Circle
+
+Shape *-- "1..*" Point
+Ellipse --> Point : center
+Square --> Point : point
+
+@enduml
