@@ -9,7 +9,7 @@ abstract class Shape(protected var pointList: List<Point>) {
     }
 
     val points: List<Point>
-        get() = pointList
+        get() = pointList.map{ it.clone() }
     abstract val area: Double
     abstract fun clone(): Shape
 }
