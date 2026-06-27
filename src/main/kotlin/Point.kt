@@ -1,5 +1,5 @@
 data class Point(var x: Double, var y: Double) {
-    fun clone(): Point = clone()
+    fun clone(): Point = copy()
     fun moveX(deltaX: Double) {
         x += deltaX
     }

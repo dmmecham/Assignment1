@@ -13,5 +13,5 @@ class Triangle(points: List<Point>) : Shape(points) {
                     pointList[2].x * (pointList[0].y - pointList[1].y)
         ) / 2.0
 
-    override fun clone(): Triangle = Triangle(pointList)
+    override fun clone(): Triangle = Triangle(pointList.map { it.clone() })
 }

@@ -7,7 +7,7 @@ class Line @Throws(IllegalArgumentException::class) constructor(points: List<Poi
 
     override val area: Double
         get() = throw UnsupportedOperationException("Lines do not have an area")
-    override fun clone(): Line = Line(pointList)
+    override fun clone(): Line = Line(pointList.map { it.clone() })
 
     var length: Double = 0.0
         get() = hypot(pointList[1].x - pointList[0].x, pointList[1].y - pointList[0].y)

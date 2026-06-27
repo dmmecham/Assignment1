@@ -8,7 +8,7 @@ open class Rectangle @Throws(IllegalArgumentException::class) constructor(points
         require(points[0].x < points[1].x && points[0].y < points[1].y) { "First point should be the upper-left corner" }
     }
 
-    override fun clone(): Rectangle = Rectangle(pointList)
+    override fun clone(): Rectangle = Rectangle(pointList.map { it.clone() })
     override val area: Double
         get() = width * height
 

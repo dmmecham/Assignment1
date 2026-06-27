@@ -12,7 +12,7 @@ open class Ellipse @Throws(IllegalArgumentException::class) constructor(
 
     override var area: Double = radius1 * radius2 * PI
 
-    override fun clone(): Ellipse = Ellipse(center, radius1, radius2)
+    override fun clone(): Ellipse = Ellipse(center.clone(), radius1, radius2)
     var center: Point = pointList[0]
         private set
 }

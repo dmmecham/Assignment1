@@ -26,11 +26,18 @@ class TriangleTest {
     fun testMove() {
         val t2 = triangle.clone()
         t2.move(Point(1.0, 1.0))
-        assertEquals(triangle.points[0].x, 2.0)
-        assertEquals(triangle.points[0].y, 2.0)
-        assertEquals(triangle.points[1].x, 3.0)
-        assertEquals(triangle.points[1].y, 2.0)
-        assertEquals(triangle.points[2].x, 3.0)
-        assertEquals(triangle.points[2].y, 3.0)
+        assertEquals(2.0, t2.points[0].x)
+        assertEquals(2.0, t2.points[0].y)
+        assertEquals(3.0, t2.points[1].x)
+        assertEquals(2.0, t2.points[1].y)
+        assertEquals(3.0, t2.points[2].x)
+        assertEquals(3.0, t2.points[2].y)
+        // Make sure the original triangle did not change.
+        assertEquals(1.0, triangle.points[0].x)
+        assertEquals(1.0, triangle.points[0].y)
+        assertEquals(2.0, triangle.points[1].x)
+        assertEquals(1.0, triangle.points[1].y)
+        assertEquals(2.0, triangle.points[2].x)
+        assertEquals(2.0, triangle.points[2].y)
     }
 }
