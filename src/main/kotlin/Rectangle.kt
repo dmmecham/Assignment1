@@ -3,10 +3,11 @@ import kotlin.math.abs
 open class Rectangle(corners: List<Point>) : Shape(corners) {
     init {
         require(corners.size == 2) { "Rectangle must have two points for opposite corners" }
-        require(corners[0].x < corners[1].x && corners[0].y < corners[1].y) { "The two corners should not share x or y" }
-        require(corners[0].x < corners[1].x &&
-                corners[0].y < corners[1].y) {
-            "The first corner must be above and to the left of the second corner."
+        require(
+            corners[0].x < corners[1].x &&
+                    corners[0].y < corners[1].y
+        ) {
+            "The first corner must have smaller x and y coordinates than the second corner."
         }
     }
 

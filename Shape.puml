@@ -4,8 +4,8 @@ skinparam classAttributeIconSize 0
 abstract class Shape {
     # pointList : List<Point>
     + points : List<Point> {readOnly}
+    + move(delta : Point) : Unit
     {abstract} + area : Double
-    + move(point : Point) : Unit
     {abstract} + clone() : Shape
 }
 
@@ -13,28 +13,29 @@ class Point {
     + x : Double
     + y : Double
     + clone() : Point
-    + moveX(deltaX : Double) : Unit
-    + moveY(deltaY : Double) : Unit
-    + move(deltaX : Double, deltaY : Double) : Unit
-    + move(delta : Point) : Unit
+    + move(deltaX : Double, deltaY : Double) : Point
 }
 
 class Line {
-    + length : Double {readOnly}
-    + slope : Double {readOnly}
+    - start : Point
+    - end : Point
+    + length : Double
+    + slope : Double
     + area : Double
     + clone() : Line
 }
 
 class Rectangle {
-    + width : Double {readOnly}
-    + height : Double {readOnly}
+    - corner1 : Point
+    - corner2 : Point
+    + width : Double
+    + height : Double
     + area : Double
     + clone() : Rectangle
 }
 
 class Square {
-    + point : Point
+    + clone() : Square
 }
 
 class Ellipse {
@@ -47,9 +48,13 @@ class Ellipse {
 
 class Circle {
     + radius : Double
+    + clone() : Circle
 }
 
 class Triangle {
+    - corner1 : Point
+    - corner2 : Point
+    - corner3 : Point
     + area : Double
     + clone() : Triangle
 }
@@ -62,8 +67,11 @@ Shape <|-- Triangle
 Rectangle <|-- Square
 Ellipse <|-- Circle
 
-Shape *-- "1..*" Point
+Shape *-- "1..*" Point : pointList
+
+Line ..> Point : start,end
+Rectangle ..> Point : corners
+Triangle ..> Point : corners
 Ellipse --> Point : center
-Square --> Point : point
 
 @enduml

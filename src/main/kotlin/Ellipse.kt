@@ -6,7 +6,6 @@ open class Ellipse(
     val radius2: Double
 ) : Shape(listOf(center)) {
     init {
-        require(points.size == 1) { "Ellipse must have exactly one point" }
         require(radius1 > 0.0) { "radius1 must be positive" }
         require(radius2 > 0.0) { "radius2 must be positive" }
     }
