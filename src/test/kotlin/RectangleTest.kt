@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class RectangleTest {
     var upperLeft = Point(1.0, 2.0)
@@ -14,15 +15,59 @@ class RectangleTest {
     }
 
     @Test
-    @DisplayName("Height should be point[1].y - point[0].y")
+    @DisplayName("Height should be difference of y values of points")
     fun testHeight() {
         assertEquals(rectangle.height, 2.0)
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf(
+                    Point(1.0, 1.0),
+                    Point(2.0, 1.0),
+                )
+            )
+        }
     }
 
     @Test
-    @DisplayName("Width should be point[1].x - point[0].x")
+    @DisplayName("Width should be difference of x values of points")
     fun testWidth() {
         assertEquals(rectangle.width, 1.0)
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf(
+                    Point(1.0, 1.0),
+                    Point(1.0, 2.0),
+                )
+            )
+        }
+    }
+
+    @Test
+    @DisplayName("Rectangle must have only two sides")
+    fun testSides() {
+        assertEquals(rectangle.points.size, 2)
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf()
+            )
+        }
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf(
+                    Point(1.0, 1.0),
+                )
+            )
+        }
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf(
+                    Point(1.0, 1.0),
+                    Point(1.0, 1.1),
+                    Point(2.0, 2.0)
+                )
+            )
+        }
+
     }
 
     @Test

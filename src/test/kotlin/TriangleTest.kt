@@ -40,4 +40,33 @@ class TriangleTest {
         assertEquals(2.0, triangle.points[2].x)
         assertEquals(2.0, triangle.points[2].y)
     }
+
+    @Test
+    @DisplayName("Rectangle must have only two sides")
+    fun testSides() {
+        assertEquals(triangle.points.size, 3)
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf()
+            )
+        }
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf(
+                    Point(1.0, 1.0),
+                )
+            )
+        }
+        assertFailsWith<IllegalArgumentException> {
+            Rectangle(
+                listOf(
+                    Point(1.0, 1.0),
+                    Point(1.0, 2.0),
+                    Point(2.0, 2.0),
+                    Point(2.0, 1.0)
+                )
+            )
+        }
+
+    }
 }

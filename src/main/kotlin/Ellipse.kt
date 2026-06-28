@@ -10,7 +10,8 @@ open class Ellipse @Throws(IllegalArgumentException::class) constructor(
         require(radius2 > 0.0) { "radius2 must be positive" }
     }
 
-    override var area: Double = radius1 * radius2 * PI
+    override val area: Double
+        get() = radius1 * radius2 * PI
 
     override fun clone(): Ellipse = Ellipse(center.clone(), radius1, radius2)
     val center: Point
