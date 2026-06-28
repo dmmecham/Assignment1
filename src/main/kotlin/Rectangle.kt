@@ -1,19 +1,26 @@
 import kotlin.math.abs
 
-open class Rectangle @Throws(IllegalArgumentException::class) constructor(points: List<Point>) : Shape(points) {
+open class Rectangle(corners: List<Point>) : Shape(corners) {
     init {
-        require(points.size == 2) { "Rectangle must have two points for upper-left and lower-right corners" }
-        require(points[0].x < points[1].x && points[0].y < points[1].y) { "First point should be the upper-left corner" }
-        require(width > 0.0) { "Width must be positive" }
-        require(height > 0.0) { "Height must be positive" }
+        require(corners.size == 2) { "Rectangle must have two points for opposite corners" }
+        require(corners[0].x < corners[1].x && corners[0].y < corners[1].y) { "The two corners should not share x or y" }
+        require(corners[0].x < corners[1].x &&
+                corners[0].y < corners[1].y) {
+            "The first corner must be above and to the left of the second corner."
+        }
     }
 
     override fun clone(): Rectangle = Rectangle(pointList.map { it.clone() })
     override val area: Double
         get() = width * height
 
+    private val corner1: Point
+        get() = pointList[0]
+    private val corner2: Point
+        get() = pointList[1]
     val height: Double
-        get() = abs(pointList[0].y - pointList[1].y)
+        get() = abs(corner1.y - corner2.y)
     val width: Double
-        get() = abs(pointList[0].x - pointList[1].x)
+        get() = abs(corner1.x - corner2.x)
+
 }

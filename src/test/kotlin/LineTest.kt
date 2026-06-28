@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith

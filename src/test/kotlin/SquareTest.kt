@@ -8,7 +8,7 @@ class SquareTest {
     val square = Square(upperLeft, length)
 
     @Test
-    @DisplayName("Area should equal height * height")
+    @DisplayName("Area should equal length * length")
     fun testArea() {
         assertEquals(square.area, 4.0)
     }
