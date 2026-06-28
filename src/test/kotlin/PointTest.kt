@@ -8,8 +8,8 @@ class Pointest {
     @Test
     @DisplayName("Center should move to the correct location")
     fun testMove() {
-        point.move(Point(1.0, 2.0))
-        assertEquals(point.x, 2.0)
-        assertEquals(point.y, 4.0)
+        val movedPoint = point.move(1.0, 2.0)
+        assertEquals(movedPoint.x, 2.0)
+        assertEquals(movedPoint.y, 4.0)
     }
 }
